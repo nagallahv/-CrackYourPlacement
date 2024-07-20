@@ -20,3 +20,35 @@ class Solution {
     }
 }
 
+Question 2:
+Sort Colors
+Link: 
+https://leetcode.com/problems/sort-colors/description/
+Solution: class Solution {
+    public void sortColors(int[] nums) {
+        Map<Integer, Integer> m = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (m.containsKey(nums[i])) {
+                m.put(nums[i], m.get(nums[i]) + 1);
+            }
+            else {
+                m.put(nums[i], 1);
+            }
+        }
+        int[] t = {0, 0, 0};
+        for (int i = 0; i < 3; i++) {
+            if (m.containsKey(i)) t[i] = m.get(i);
+        }
+        int k = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < t[i]; j++) {
+                nums[k] = i;
+                k++;
+            }
+        }
+    }
+}
+
+Question 3: 
+Link:
+Solution: 
