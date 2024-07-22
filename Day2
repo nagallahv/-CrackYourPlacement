@@ -1,0 +1,18 @@
+Question1: Remove Duplicates from Sorted Array
+Link: https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+Solution:
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        Map<Integer, Integer> m = new HashMap<>();
+        int k = 0;
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (!m.containsKey(nums[i])) {
+                m.put(nums[i], 1);
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k;
+    }
+}
