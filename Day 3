@@ -36,3 +36,36 @@ class Solution {
         return profit;
     }
 }
+
+Question: Two Sum
+Link: https://leetcode.com/problems/two-sum/description/
+Code:
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] ans = new int[2];
+        ans[0] = -1;
+        ans[1] = -1;
+        // ans = [-1, -1];
+        Map<Integer, List<Integer>> hmap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (hmap.containsKey(nums[i])) hmap.get(nums[i]).add(i);
+            else {
+                List<Integer> list = new ArrayList<>();
+                list.add(i);
+                hmap.put(nums[i], list);
+            }
+        }
+        for (Integer key: hmap.keySet()) {
+            List<Integer> indexList = hmap.get(key);
+            int lastEle = indexList.get(indexList.size() - 1);
+            indexList.remove(indexList.size() - 1);
+            hmap.put(key, indexList);
+            if (hmap.containsKey(target-key) && (hmap.get(target-key)).size()>0) {
+                ans[0] = lastEle;
+                ans[1] = hmap.get(target - key).get(0);
+                return ans;
+            }
+        }
+        return ans;
+    }
+}
